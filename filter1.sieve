@@ -1,4 +1,4 @@
-require ["include", "environment", "variables", "relational", "comparator-i;ascii-numeric", "spamtest"];
+require ["include", "environment", "variables", "relational", "comparator-i;ascii-numeric", "spamtest", "fileinto"];
 
 # Generated: Do not run this script on spam messages
 #if address "from" "AddressToReject@domain.tld"
