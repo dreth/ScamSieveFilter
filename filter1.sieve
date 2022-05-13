@@ -1,21 +1,15 @@
-require ["include", "environment", "variables", "relational", "comparator-i;ascii-numeric", "spamtest", "fileinto"];
+require ["include", "environment", "variables", "relational", "comparator-i;ascii-numeric", "spamtest", "fileinto", "imap4flags"];
 
-# Generated: Do not run this script on spam messages
-#if address "from" "AddressToReject@domain.tld"
-
-if allof (address :contains "from" 
+if allof (address :all :comparator "i;unicode-casemap" :contains "From"
 # add elements to this list that you have commonly seen in the `from` field of the spam you receive
 ["elon musk"], 
 
-header :comparator "i;unicode-casemap" :contains "Subject" 
-# add elements to this list that you have commonly seen in the `subject` field of the spam you receive
-["elon musk"],
-
 # here input the address that you're getting spam on 
-address :is "to" ["YOUR ADDRESS"])
+address :all :comparator "i;unicode-casemap" :is ["To", "Cc", "Bcc"] ["YOUR ADDRESS"])
 
 {
 
+addflag "\\Seen";
 fileinto "trash";
 
 } 
